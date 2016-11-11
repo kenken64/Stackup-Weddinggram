@@ -1,0 +1,53 @@
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link active theme-color" href="#/back">Back to Home</a>
+    </li>
+</ul>
+<div class="row w-card">
+    <div class="col-xs-3 visible-md visible-lg"></div>
+    <div class="col-md-6 col-xs-12">
+
+        <div class="posted-by">
+                <span class="profile">
+                    <img src="/assets/images/default-user.jpg" alt=""/>
+                </span>
+            <span style="line-height: 34px; margin-left: 10px;">Nikhil Bhandari</span>
+
+            <span style="float: right;line-height: 34px;">22 June</span>
+
+        </div>
+        <img ng-src="/api/posts/image/{{ ctrl.data.url}}" style="border: thin solid #ddd;"/>
+
+        <div class="description">
+            <div class="caption">
+                {{ctrl.data.caption}}
+            </div>
+            <div class="likes-comments">
+                <a data-ng-click="ctrl.like(ctrl.data.id)" style="cursor: pointer;">
+                    <img class="like-image"
+                         src="/assets/images/like.png"
+                         alt=""/>
+                </a>
+                    <span class="like-count">
+                        {{ctrl.data.likeCount || 0}}
+                    </span>
+
+            </div>
+            <div class="comment-section">
+                <div data-ng-repeat="comment in ctrl.comments" class="comment" style="">
+                    {{comment.text}}
+                            <span style="float: right; margin-left: 20px;">
+                                <i class="fa fa-times theme-color fa-1x" aria-hidden="true" ng-click="ctrl.deleteComment(comment)"></i>
+                            </span>
+                </div>
+                <form name="commentForm" novalidate ng-submit="ctrl.addComment(ctrl.data.id)" class="comment">
+                        <textarea ng-model="ctrl.commentForm.text" maxlength="1500" required
+                                  placeholder="Add a Comment"></textarea>
+                    <span class="characters">{{1500 - ctrl.commentForm.text.length}} characters remaining..</span>
+                    <input type="submit" class="btn btn-danger pull-right"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3"></div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-sm-10">
+
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="http://lorempixel.com/100/100/people/9/">
+                </div>
+                <div class="info" data-ng-controller="ProfileCtrl as profileCtrl">
+                    <div class="title">
+                        <a target="_blank" href="http://scripteden.com/">{{profileCtrl.localProfile.firstName}} {{profileCtrl.localProfile.lastName}}</a>
+                    </div>
+                    <div class="desc">Passionate Full Stack Developer</div>
+                    <div class="desc">Curious developer</div>
+                    <div class="desc">Stack Up</div>
+                    <div class="desc">{{profileCtrl.localProfile.email}}</div>
+
+                </div>
+                <div class="page-header text-center" ng-controller="LogoutCtrl as ctrl">
+                    <button type="button" ng-click="ctrl.logout()" class="btn btn-default btn-lg">
+                        <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                    </button>
+
+                </div>
+                <div class="bottom">
+                    <a class="custom-btn btn-primary btn-twitter btn-sm" target="_blank" href="https://twitter.com">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="custom-btn btn-danger btn-sm" rel="publisher" target="_blank"
+                       href="https://plus.google.com">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="custom-btn btn-primary btn-sm" rel="publisher" target="_blank"
+                       href="https://www.fb.com">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

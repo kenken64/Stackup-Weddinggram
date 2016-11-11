@@ -1,0 +1,59 @@
+<div class="container" ng-controller="LoginCtrl as ctrl">
+
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1><span class="fa fa-sign-in"></span> Sign In</h1>
+        <br>
+        <flash-message
+                duration="5000"
+                show-close="true"
+                on-dismiss="myCallback(flash);"
+        ></flash-message>
+        <!-- LOGIN FORM -->
+        <form name="loginForm" ng-submit="ctrl.login()" novalidate autocomplete="off">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="email" class="form-control" ng-model="ctrl.user.email"
+                       placeholder="Email address" name="email" required>
+                <div class="help-block"
+                     ng-show="loginForm.email.$error.required">
+                    <p>Email Address is mandatory</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" ng-model="ctrl.user.password"
+                       name="password" placeholder="Password" required>
+                <div class="help-block"
+                     ng-show="loginForm.password.$error.required">
+                    <p>Password is mandatory</p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default btn-lg">Login</button>
+        </form>
+
+        <hr>
+        <a href="/oauth/google" class="btn btn-block btn-social btn-google">
+            <i class="fa fa-google-plus" aria-hidden="true"></i> Google
+        </a>
+        <a href="/oauth/facebook" class="btn btn-block btn-social btn-facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+        </a>
+        <a href="/oauth/twitter" class="btn btn-block btn-social btn-twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+        </a>
+        <a href="/oauth/linkedIn" class="btn btn-block btn-social btn-linkedin">
+            <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
+        </a>
+        <a href="/oauth/wechat" class="btn btn-block btn-social btn-wechat">
+            <i class="fa fa-wechat" aria-hidden="true"></i> WeChat
+        </a>
+        <hr>
+
+        <p>Need an account? <a ui-sref="SignUp">Signup</a></p>
+        <p>Forgot your password ? <a ui-sref="#">Reset</a></p>
+
+    </div>
+
+</div>

@@ -1,0 +1,102 @@
+<div class="container main"
+     data-ng-controller="PostListCtrl as ctrl">
+    <div class="row w-card" data-ng-repeat="post in ctrl.posts track by $index">
+        <div class="col-xs-3 visible-md visible-lg"></div>
+        <div class="col-md-6 col-xs-12">
+
+            <div class="posted-by">
+                <span class="profile">
+                    <img src="/assets/images/default-user.jpg" alt=""/>
+                </span>
+                <span style="line-height: 34px; margin-left: 10px;">Nikhil Bhandari</span>
+
+                <span style="float: right;line-height: 34px;">22 June</span>
+
+            </div>
+
+            <img ng-src="/api/posts/image/{{post.url}}" style="border: thin solid #ddd;"/>
+
+            <div class="description">
+                <div class="caption">
+                    {{post.caption}}
+                </div>
+                <div class="likes-comments">
+                    <a data-ng-click="ctrl.like(post)" style="cursor: pointer;">
+                        <img class="like-image"
+                             src="/assets/images/like.png"
+                             alt=""/>
+                    </a>
+                    <span class="like-count">
+                        {{post.likeCount || 0}}
+                    </span>
+                    <a  ng-controller="CommentListCtrl as commentCtrl" ng-init="commentCtrl.getComments(post.id)" ng-click="commentCtrl.showComments(post)" class="add-comment">{{commentCtrl.comments.length}} Comments</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+
+    <div class="row footer">
+        <a class="load-more">Load More</a>
+    </div>
+
+    <!-- Modal -->
+    <div data-ng-controller="ImageUploadCtrl as uploader">
+        <div class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="myModalLabel"
+             aria-hidden="true"
+             data-ng-class="{'show': uploader.showUpload, 'in': uploader.showUpload}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form name="form" ng-submit="form.$valid && uploader.submit()">
+
+                        <div class="modal-header">
+                            <button type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                    data-ng-click="uploader.showUpload = false">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Add Story</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <input type="text"
+                                       class="form-control"
+                                       ng-model="uploader.form.caption"
+                                       placeholder="Caption"/>
+                            </div>
+
+                            <div class="file"
+                                 style="position: relative; border: 2px dashed #DDD; width: 100%; min-height: 300px;">
+                                <img ngf-thumbnail="uploader.form.file">
+                                <a ngf-select class="camera-btn"
+                                   ng-model="uploader.form.file">
+                                    <span class="glyphicon glyphicon-camera"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="text-align: left">
+
+                            <button type="submit"
+                                    data-ng-class="{disabled: uploader.uploading}"
+                                    class="btn btn-danger"> Add
+                            </button>
+                            <button type="submit"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                    data-ng-click="uploader.showUpload = false"
+                                    class="btn btn-default"> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a class="upload" data-ng-click="uploader.showUpload = true">+</a>
+    </div>
+</div>
